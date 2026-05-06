@@ -1,0 +1,120 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row mb-4 align-items-center">
+    <div class="col-md-8">
+        <h2 class="fw-bold mb-1"><i class="fas fa-book me-2 text-primary"></i> Manage Quizzes</h2>
+        <p class="text-muted mb-0">Create, edit, and organize your quizzes.</p>
+    </div>
+    <div class="col-md-4 text-md-end mt-3 mt-md-0">
+        <a href="{{ url_for('admin_dashboard') }}" class="btn btn-outline-secondary rounded-pill px-4"><i class="fas fa-arrow-left me-1"></i> Dashboard</a>
+    </div>
+</div>
+
+<div class="row">
+    <!-- Create Quiz Form -->
+    <div class="col-lg-4 col-md-5 mb-4">
+        <div class="card border-0 h-100 position-sticky" style="top: 100px;">
+            <div class="card-header bg-transparent py-4">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-plus-circle me-2 text-secondary"></i> Create New Quiz</h5>
+            </div>
+            <div class="card-body px-4 pb-4">
+                <form method="POST" action="{{ url_for('manage_quizzes') }}">
+                    <input type="hidden" name="action" value="create">
+                    
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Quiz Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required placeholder="e.g., Python Basics">
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="category" class="form-label">Category</label>
+                        <input type="text" class="form-control" id="category" name="category" list="category_list" required placeholder="e.g., Programming">
+                        <datalist id="category_list">
+                            {% for cat in categories %}
+                                <option value="{{ cat }}">
+                            {% endfor %}
+                        </datalist>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="time_limit" class="form-label">Time Limit (minutes)</label>
+                        <div class="input-group">
+                            <span class="input-group-text"><i class="far fa-clock"></i></span>
+                            <input type="number" class="form-control border-start-0" id="time_limit" name="time_limit" min="1" value="15" required>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-4">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" name="description" rows="3" placeholder="Brief description of the quiz..."></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary w-100 rounded-pill py-2 shadow-sm"><i class="fas fa-save me-2"></i> Save Quiz</button>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <!-- List Quizzes -->
+    <div class="col-lg-8 col-md-7 mb-4">
+        <div class="card border-0 h-100">
+            <div class="card-header bg-transparent py-4">
+                <h5 class="mb-0 fw-bold"><i class="fas fa-list me-2 text-primary"></i> All Quizzes</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover table-borderless align-middle mb-0">
+                        <thead class="table-light">
+                            <tr>
+                                <th class="ps-4">Title & Details</th>
+                                <th>Category</th>
+                                <th>Time</th>
+                                <th class="text-end pe-4">Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% if quizzes %}
+                                {% for quiz in quizzes %}
+                                <tr>
+                                    <td class="ps-4">
+                                        <div class="d-flex flex-column">
+                                            <strong class="text-dark">{{ quiz.title }}</strong>
+                                            <small class="text-muted text-truncate" style="max-width: 200px;">{{ quiz.description or "No description" }}</small>
+                                        </div>
+                                    </td>
+                                    <td><span class="badge bg-primary bg-opacity-10 text-primary">{{ quiz.category }}</span></td>
+                                    <td class="text-muted">{{ quiz.time_limit_minutes }}m</td>
+                                    <td class="text-end pe-4">
+                                        <a href="{{ url_for('manage_questions', quiz_id=quiz.id) }}" class="btn btn-sm btn-light text-info shadow-sm rounded-circle me-1" style="width: 35px; height: 35px; line-height: 22px;" title="Manage Questions">
+                                            <i class="fas fa-question-circle"></i>
+                                        </a>
+                                        
+                                        <form method="POST" action="{{ url_for('manage_quizzes') }}" class="d-inline" onsubmit="return confirm('Are you sure you want to delete this quiz? All associated questions and results will be lost!');">
+                                            <input type="hidden" name="action" value="delete">
+                                            <input type="hidden" name="quiz_id" value="{{ quiz.id }}">
+                                            <button type="submit" class="btn btn-sm btn-light text-danger shadow-sm rounded-circle" style="width: 35px; height: 35px; line-height: 22px;" title="Delete Quiz">
+                                                <i class="fas fa-trash-alt"></i>
+                                            </button>
+                                        </form>
+                                    </td>
+                                </tr>
+                                {% endfor %}
+                            {% else %}
+                                <tr>
+                                    <td colspan="4" class="text-center py-5">
+                                        <div class="text-muted">
+                                            <i class="fas fa-inbox fa-3x mb-3 text-light"></i>
+                                            <p class="mb-0">No quizzes available.</p>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {% endif %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

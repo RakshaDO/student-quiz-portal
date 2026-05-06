@@ -1,0 +1,53 @@
+{% extends "layout.html" %}
+
+{% block content %}
+<div class="row justify-content-center mt-5">
+    <div class="col-md-8 text-center">
+        <div class="card border-0 shadow-lg bg-white overflow-hidden">
+            <div class="bg-gradient-primary py-3"></div>
+            <div class="card-body p-5">
+                {% set percentage = (result.score / result.total_questions * 100) | round(1) %}
+                
+                <div class="mb-4 position-relative d-inline-block">
+                    <div class="position-absolute w-100 h-100 rounded-circle" style="background: var(--primary-color); opacity: 0.1; transform: scale(1.4); z-index: 0;"></div>
+                    {% if percentage >= 80 %}
+                        <i class="fas fa-trophy fa-5x text-warning position-relative" style="z-index: 1;"></i>
+                    {% elif percentage >= 50 %}
+                        <i class="fas fa-check-circle fa-5x text-success position-relative" style="z-index: 1;"></i>
+                    {% else %}
+                        <i class="fas fa-times-circle fa-5x text-danger position-relative" style="z-index: 1;"></i>
+                    {% endif %}
+                </div>
+                
+                {% if percentage >= 80 %}
+                    <h2 class="fw-bold text-success mt-3 mb-2">Excellent Job!</h2>
+                {% elif percentage >= 50 %}
+                    <h2 class="fw-bold text-primary mt-3 mb-2">Good Effort!</h2>
+                {% else %}
+                    <h2 class="fw-bold text-danger mt-3 mb-2">Needs Improvement</h2>
+                {% endif %}
+                
+                <h4 class="mb-4 text-dark">{{ result.title }}</h4>
+                
+                <div class="display-1 fw-bold text-primary mb-2" style="letter-spacing: -0.05em;">
+                    {{ result.score }} <span class="text-muted fs-3">/ {{ result.total_questions }}</span>
+                </div>
+                
+                <p class="fs-4 text-muted mb-5">You scored <span class="fw-bold text-dark">{{ percentage }}%</span></p>
+                
+                <div class="d-flex flex-column flex-md-row justify-content-center gap-3">
+                    <a href="{{ url_for('student_dashboard') }}" class="btn btn-outline-secondary btn-lg rounded-pill px-5 fw-bold">
+                        <i class="fas fa-home me-2"></i> Dashboard
+                    </a>
+                    <a href="{{ url_for('leaderboard') }}" class="btn btn-primary btn-lg rounded-pill px-5 shadow-sm fw-bold">
+                        <i class="fas fa-trophy me-2"></i> Leaderboard
+                    </a>
+                </div>
+            </div>
+            <div class="card-footer bg-light border-0 py-3">
+                <span class="text-muted small"><i class="far fa-calendar-alt me-1"></i> Quiz taken on {{ result.date_taken.strftime('%B %d, %Y at %I:%M %p') }}</span>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

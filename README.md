@@ -8,33 +8,43 @@ This project demonstrates real-world concepts like authentication, database inte
 
 ---
 
-# 🌐 Live Demo
-👉 Add Your Render Deployment Link Here
 
----
+# 🖼️ Application Preview
 
 # 🖼️ Application Preview
 
 ## 🔐 Login Page
-Login System
+![Login Page](screenshots/login.png)
 
 ## 👨‍💼 Admin Dashboard
-Admin Panel
-
-## ❓ Manage Questions
-Question Management
-
-## 📝 Quiz Interface
-Quiz Attempt
-
-## 📊 Leaderboard Section
-Leaderboard
+![Admin Dashboard](screenshots/admin-dash.png)
 
 ## 👨‍🎓 Student Dashboard
-Student Panel
+![Student Dashboard](screenshots/student-dash.png)
 
-## 📈 Result & Score Section
-Results
+## ❓ Manage Students
+![Manage Students](screenshots/manage-stu.png)
+
+## 📝 Manage Quizzes
+![Manage Quizzes](screenshots/manage-quizes.png)
+
+## ❓ Manage Questions
+![Manage Questions](screenshots/manage-questions.png)
+
+## 📝 Quiz Interface
+![Quiz Interface](screenshots/attending-quiz.png)
+
+## 📊 Result Section
+![Result Section](screenshots/result.png)
+
+## 🏆 Leaderboard
+![Leaderboard](screenshots/leaderboard.png)
+
+## 📜 Quiz History
+![Quiz History](screenshots/history.png)
+
+## 📝 Register Page
+![Register Page](screenshots/register.png)
 
 ---
 

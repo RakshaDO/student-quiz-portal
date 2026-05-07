@@ -280,4 +280,11 @@ body {
     box-shadow: var(--shadow-md);
 }
 
-/* Animations Removed */
+/* Password Toggle Eye Icon */
+.toggle-password .eye-icon {
+    transition: color 0.3s ease;
+}
+
+.toggle-password:hover .eye-icon {
+    color: var(--primary-color) !important;
+}

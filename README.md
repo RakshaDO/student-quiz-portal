@@ -11,8 +11,6 @@ This project demonstrates real-world concepts like authentication, database inte
 
 # 🖼️ Application Preview
 
-# 🖼️ Application Preview
-
 ## 🔐 Login Page
 ![Login Page](screenshots/login.png)
 

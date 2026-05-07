@@ -106,10 +106,15 @@ def register():
     if request.method == 'POST':
         username = request.form.get('username')
         password = request.form.get('password')
-        role = request.form.get('role') # Let user pick admin/student for testing
+        confirm_password = request.form.get('confirm_password')
+        role = 'student' # Force all new registrations to be students
 
-        if not username or not password or not role:
+        if not username or not password or not confirm_password:
             flash('All fields are required.', 'danger')
+            return render_template('register.html')
+
+        if password != confirm_password:
+            flash('Passwords do not match.', 'danger')
             return render_template('register.html')
 
         hashed_password = generate_password_hash(password)

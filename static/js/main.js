@@ -10,7 +10,23 @@ document.addEventListener('DOMContentLoaded', function() {
         }, 5000);
     });
 
-    // Option selection highlighting is handled entirely by CSS in style.css
-    // using the :checked + .option-label pseudo-class selector.
-    // No inline JS styling needed here!
+    // Password Show/Hide Toggle
+    const togglePasswordButtons = document.querySelectorAll('.toggle-password');
+    togglePasswordButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const targetId = this.getAttribute('data-target');
+            const passwordInput = document.getElementById(targetId);
+            const icon = this.querySelector('i');
+            
+            if (passwordInput.type === 'password') {
+                passwordInput.type = 'text';
+                icon.classList.remove('fa-eye');
+                icon.classList.add('fa-eye-slash');
+            } else {
+                passwordInput.type = 'password';
+                icon.classList.remove('fa-eye-slash');
+                icon.classList.add('fa-eye');
+            }
+        });
+    });
 });

@@ -19,17 +19,17 @@ This project demonstrates real-world concepts like authentication, database inte
 ## 👨‍💼 Admin Dashboard
 ![Admin Dashboard](screenshots/admin-dash.png)
 
-## 👨‍🎓 Student Dashboard
-![Student Dashboard](screenshots/student-dash.png)
-
-## ❓ Manage Students
-![Manage Students](screenshots/manage-stu.png)
-
 ## 📝 Manage Quizzes
 ![Manage Quizzes](screenshots/manage-quizes.png)
 
 ## ❓ Manage Questions
 ![Manage Questions](screenshots/manage-questions.png)
+
+## 👨‍🎓 Student Dashboard
+![Student Dashboard](screenshots/student-dash.png)
+
+## ❓ Manage Students
+![Manage Students](screenshots/manage-stu.png)
 
 ## 📝 Quiz Interface
 ![Quiz Interface](screenshots/attending-quiz.png)
@@ -121,6 +121,7 @@ This project demonstrates real-world concepts like authentication, database inte
 
 ```bash
 Student_Quiz_Portal/
+│── screenshots/
 │── static/
 │── templates/
 │── app.py
